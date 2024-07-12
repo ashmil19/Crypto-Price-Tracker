@@ -1,11 +1,11 @@
 import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import axios from '../helper/axios';
 
 const Register = () => {
-
+    const navigate = useNavigate()
     const [values, setValues] = useState({
         fullname: "",
         email: "",
@@ -68,6 +68,7 @@ const Register = () => {
                 credentials: "include"
             })
             .then((res) => {
+                navigate("/otp")
                 console.log("success")
             })
             .catch((err) => {

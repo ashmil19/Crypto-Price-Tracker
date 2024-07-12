@@ -11,11 +11,13 @@ const Login = () => {
             id="standard-multiline-flexible"
             label="Email"
             variant="standard"
+            name='email'
           />
           <TextField
             id="standard-multiline-flexible"
             label="Password"
             variant="standard"
+            name='password'
           />
           <Link to="/register">
             <div className='w-full underline cursor-pointer'>register</div>

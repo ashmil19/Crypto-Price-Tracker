@@ -2,6 +2,7 @@ import { Button } from '@mui/material'
 import { useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../helper/axios'
 
 const OtpComponent = ({ path, email }) => {
     const navigate = useNavigate()
@@ -12,7 +13,6 @@ const OtpComponent = ({ path, email }) => {
             alert("Fill the OTP")
             return;
         }
-        console.log(otp);
 
         axios.post("/otpVerify", { otp }, {
             withCredentials: true
@@ -21,7 +21,7 @@ const OtpComponent = ({ path, email }) => {
                 path ? navigate(path, { state: { email } }) : navigate('/login')
             })
             .catch((err) => {
-                console.log(err);
+                console.log(err.message);
             })
     }
 
