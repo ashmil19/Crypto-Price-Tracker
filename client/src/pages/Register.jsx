@@ -28,7 +28,6 @@ const Register = () => {
     }
 
     const handleSubmit = () => {
-        console.log(values);
         const {
             fullname,
             email,
