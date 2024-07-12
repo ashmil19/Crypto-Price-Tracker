@@ -1,6 +1,8 @@
 import userModel from "../models/userModel.js";
 import { sendOtp } from "../utils/sendOtp.js";
 import hash from "../utils/toHash.js";
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const createUser = async (req, res) => {
     try {
@@ -59,7 +61,7 @@ const verifyOtp = async (req, res) => {
         await userModel.findByIdAndUpdate(id, { $set: { isVerify: true } });
         res.status(200).json({ message: "OTP verification success" });
     } catch (error) {
-        next(error);
+        console.log(error)
     }
 };
 
