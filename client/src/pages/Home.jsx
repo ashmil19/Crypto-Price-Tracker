@@ -3,10 +3,11 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate'
 import Navbar from '../components/user/Navbar'
 import { FaSearch } from 'react-icons/fa'
 import debounce from "lodash.debounce";
-import { MdDelete } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
+  const navigate = useNavigate()
   const axiosPrivate = useAxiosPrivate()
   const [search, setSearch] = useState("")
   const [results, setResults] = useState([])
@@ -72,6 +73,10 @@ const Home = () => {
     setDeleted(response?.data?.deleted)
   }
 
+  const handleCryptoDetails = () =>{
+    navigate('/graph', {state: {name: crypto.name}})
+  }
+
 
   return (
     <>
@@ -84,7 +89,6 @@ const Home = () => {
               className="bg-transparent border-none h-12 w-full text-lg ml-1 focus:outline-none"
               placeholder="Type to search..."
               onFocus={() => setIsFocused(true)}
-              // onBlur={() => setIsFocused(false)}
               value={search}
               onChange={handleChange}
             />
@@ -111,7 +115,7 @@ const Home = () => {
                 return (
                   <div key={id} className="w-full px-5 py-2 border-b-2 border-gray-400 cursor-pointer flex justify-between" onClick={() => fetchCrypto(result)}>
                     {result.content}
-                    <span className='cursor-pointer' onClick={ ()=> handleDeleteSearch(result)}>X</span>
+                    <span className='cursor-pointer font-bold' onClick={ ()=> handleDeleteSearch(result)}>X</span>
                   </div>
                 )
               })}
@@ -119,7 +123,7 @@ const Home = () => {
           </div>}
 
 
-          {crypto.name && crypto.prices && <div className='h-56 w-full flex justify-center mt-5'>
+          {crypto.name && crypto.prices && <div className='h-56 w-full flex justify-center mt-5 cursor-pointer' onClick={handleCryptoDetails}>
             <div className='bg-gray-400 rounded-lg h-full w-2/4 text-3xl font-semibold flex flex-col justify-center items-center'>
               <div>Name: {crypto?.name} </div>
               <div>usd: {crypto?.prices?.usdt}</div>

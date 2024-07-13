@@ -95,11 +95,6 @@ const handleLogin = async (req, res) => {
         userData.accessToken = accessToken;
         await userData.save();
 
-        // res.cookie("jwt", accessToken, {
-        //     httpOnly: true,
-        //     maxAge: 24 * 60 * 60 * 1000 * 7,
-        // });
-
         res.status(200).json({
             accessToken,
             fullname: userData.fullname,

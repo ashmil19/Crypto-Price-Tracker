@@ -1,9 +1,21 @@
 
 import { SiBitcoinsv } from "react-icons/si";
 import { TbLogout2 } from "react-icons/tb";
-
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { useDispatch } from "react-redux";
+import { logout } from '../../slices/authSlice'
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const axiosPrivate = useAxiosPrivate()
+
+  const handleLogout = async () =>{
+    await axiosPrivate.get("/user/logout")
+    dispatch(logout())
+    navigate('/login')
+  }
 
   return (
     <div>
@@ -18,7 +30,7 @@ function Navbar() {
               </div>
               
               <div>
-                  <TbLogout2 cursor={'pointer'} color="white" size={'30px'} />
+                  <TbLogout2 cursor={'pointer'} color="white" size={'30px'} onClick={handleLogout} />
               </div>
             </div>
           </div>

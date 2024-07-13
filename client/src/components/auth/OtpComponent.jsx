@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import OtpInput from 'react-otp-input'
 import { useNavigate } from 'react-router-dom'
 import axios from '../../helper/axios'

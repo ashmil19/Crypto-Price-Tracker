@@ -11,11 +11,10 @@ const priceHistoryModel = schema(
         ],
         CreatedAt: {
             type: Date,
-            default: Date.now
+            default: Date.now(),
+            expires: 1800,
         }
     }
 )
-
-priceHistoryModel.index({CreatedAt: 1}, {expexpireAfterSeconds: 1800})
 
 export default mongoose.model("priceHistory", priceHistoryModel)
