@@ -17,7 +17,6 @@ const LineChart = ({name}) => {
                 value: name
             }
         })
-        console.log(response?.data?.priceHistory)
         setDatas(response?.data?.priceHistory)
     }
 
